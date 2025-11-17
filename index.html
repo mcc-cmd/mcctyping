@@ -130,7 +130,7 @@ function buildBrandUrl(route, doc, age){
   if (!route || !route.carrier || !route.brand) return '#';
 
   // http-server 루트가 public 이므로 /brands 로 시작
-  const base = `/brands/${route.carrier}/${route.brand}/index.html`;
+  const base = `brands/${route.carrier}/${route.brand}/index.html`;
   const abs  = new URL(base, location.href).href;
 
   const qs = new URLSearchParams();
