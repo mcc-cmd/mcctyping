@@ -1,0 +1,61 @@
+:root{
+  --bg:#f6f8fb; --card:#ffffff; --line:#e5e9f2; --fg:#0b1220;
+  /* 기본 스케일(브라우저에서 조정), 원본 크기 기본값 */
+  --zoom:1; --natw:595px; --nath:842px; /* 세로 A4 기본 */
+}
+
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,"Noto Sans KR",sans-serif}
+.viewer{max-width:980px;margin:18px auto;padding:10px}
+
+/* 툴바(있을 때) */
+.toolbar{max-width:980px;margin:14px auto 0;display:flex;gap:8px;justify-content:flex-end}
+.toolbar button{padding:8px 12px;border:1px solid #d0d5dd;border-radius:10px;background:#fff;cursor:pointer}
+.toolbar button.primary{background:#111827;color:#fff;border-color:#111827}
+
+/* 캔버스(미리보기) */
+.paper{
+  position:relative;
+  width:100%;
+  margin:0 auto 24px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  /* 배경 원본크기 × 스케일로 실제 높이를 계산 */
+  height:calc(var(--nath) * var(--zoom));
+}
+
+/* 스테이지는 '원본 픽셀 크기'를 갖고, 스케일만 적용 */
+.stage{
+  position:relative;
+  width:var(--natw);
+  height:var(--nath);
+  transform-origin:top left;
+  transform:scale(var(--zoom));
+  margin:0 auto;
+}
+
+/* 이미지는 스테이지 크기에 1:1로 채움(비틀지 않음) */
+.stage>img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:contain;      /* cover가 아니라 contain */
+  image-rendering:auto;
+}
+
+.overlay{position:absolute; inset:0}
+.field{position:absolute; --fs:14px}
+.field .label{position:absolute; top:-16px; left:0; font-size:12px; font-weight:800; color:#475467}
+.field input,.field select,.field textarea{
+  width:100%; padding:6px 8px; border:1px solid #d0d5dd; border-radius:8px; background:#fff; color:#0b1220; font:600 var(--fs)/1.25 system-ui
+}
+
+/* 프린트 최적화 */
+@media print{
+  @page{ size:A4 portrait; margin:8mm; }
+  :root{ --zoom:1 !important; } /* 인쇄는 1:1로 */
+  body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; background:#fff; }
+  .toolbar{ display:none !important; }
+  .viewer{ max-width:none; margin:0; padding:0; }
+  .paper{ border:0; border-radius:0; break-after:page; }
+}

@@ -1,0 +1,18 @@
+{
+  "pages": [
+    {
+      "bg": "/brands/uplus/umobile/images/cancel-1.jpg",
+      "fields": [
+        { "id": "applyYear",  "label": "년",   "type": "text", "x": 10, "y": 10, "w": 10, "autoDate": "year" },
+        { "id": "applyMonth", "label": "월",   "type": "text", "x": 22, "y": 10, "w": 10, "autoDate": "month" },
+        { "id": "applyDay",   "label": "일",   "type": "text", "x": 34, "y": 10, "w": 10, "autoDate": "day"  },
+
+        { "id": "msisdn",     "label": "회선 번호",  "type": "text",   "x": 10, "y": 24, "w": 30 },
+        { "id": "reason",     "label": "해지 사유",  "type": "select", "x": 10, "y": 32, "w": 40,
+          "options": ["고객 요청", "명의 변경(해지 후 재가입)", "요금 체납/미납", "번호이동 해지", "기타"]
+        },
+        { "id": "agree",      "label": "동의",      "type": "checkbox", "x": 10, "y": 42, "w": 6, "checkSize": 18 }
+      ]
+    }
+  ]
+}
